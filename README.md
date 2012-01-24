@@ -21,9 +21,9 @@
 ## Using in Node.js
 
     $ npm install cromag
-    
+
     var Cromag = require('cromag');
-    
+
     var now = new Cromag();
     console.log(now.toString());
 
@@ -225,8 +225,9 @@ Returns `boolean` as to whether the year passed is a leap year
 
 Returns the `Number` of days in the month passed, `1-31`
 
-    Cromag.getDaysInMonth(monthNumber)
+    Cromag.getDaysInMonth(year, monthNumber)
 
+**year** - `Number` of the year to check
 **monthNumber** - `Number` of the month to check, `0-11`
 
 ## Instance Methods
