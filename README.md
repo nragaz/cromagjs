@@ -353,6 +353,12 @@ Returns the `Number` of days between the `date` passed and this instance
 
 **date** - `Cromag` date to compare to
 
+### getDaysInMonth
+
+Returns the `Number` of days in the month.
+
+    d.getDaysinMonth()
+
 ### getFullYear
 
 Returns the `Number` full year, 4 digits

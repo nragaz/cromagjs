@@ -160,9 +160,9 @@ THE SOFTWARE.
         return null;
     };
 
-    var Cromag = function () { 
+    var Cromag = function () {
         var args = Array.prototype.slice.call(arguments);
-        
+
         // this is horrible. there has to be a better way for this, dealing
         // with the Date object is painful at best due to its "special"
         // constrainsts
@@ -186,7 +186,7 @@ THE SOFTWARE.
 
     // static class methods
     Cromag.now = Date.now;
-    
+
     Cromag.UTC = Date.UTC;
 
     // ------------------------------------------------------------------
@@ -591,14 +591,18 @@ THE SOFTWARE.
     shadow('toTimeString');
     shadow('toUTCString');
     shadow('valueOf');
-    
-    
+
+
     polyfill('getMonthAbbr', function () {
         return monthsAbbr[this.getMonth()];
     });
 
     polyfill('getMonthName', function () {
         return monthsFull[this.getMonth()];
+    });
+
+    polyfill('getDaysInMonth', function () {
+        return Cromag.getDaysInMonth(this.getYear(), this.getMonth());
     });
 
     polyfill('getUTCOffset', function () {
@@ -770,8 +774,8 @@ THE SOFTWARE.
 
         return format;
     });
-    
-    
+
+
     if (context.Object !== undefined) {
         context.Cromag = Cromag;
     } else {
