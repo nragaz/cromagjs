@@ -505,6 +505,13 @@ THE SOFTWARE.
         }
         return 0;
     };
+    
+    Cromag.dayEquals = function (date1, date2) {
+        day1 = date1.clone().clearTime();
+        day2 = date2.clone().clearTime();
+        
+        return Cromag.equals(day1, day2);
+    }
 
     Cromag.equals = function (date1, date2) {
         return date1.valueOf() === date2.valueOf();
@@ -730,6 +737,10 @@ THE SOFTWARE.
 
     polyfill('equals', function (date) {
         return Cromag.equals(this, date);
+    });
+    
+    polyfill('dayEquals', function (date) {
+        return Cromag.dayEquals(this, date);
     });
 
     polyfill('isAfter', function (date) {
