@@ -507,8 +507,8 @@ THE SOFTWARE.
     };
     
     Cromag.dayEquals = function (date1, date2) {
-        day1 = date1.clone().clearTime();
-        day2 = date2.clone().clearTime();
+        day1 = new Cromag(date1).clearTime();
+        day2 = new Cromag(date2).clearTime();
         
         return Cromag.equals(day1, day2);
     }
