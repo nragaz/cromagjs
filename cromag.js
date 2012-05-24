@@ -384,7 +384,7 @@ THE SOFTWARE.
         if (format) {
             return getDateFromFormat(date, format);
         }
-        var timestamp = Date.parse(date), minutesOffset = 0, match;
+        var timestamp = Date.parse(date), minutesOffset = 0, match, ms;
         if (isNaN(timestamp) && (match = /^(\d{4}|[+\-]\d{6})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{3,}))?)?(?:(Z)|([+\-])(\d{2})(?::?(\d{2}))?))?/.exec(date))) {
             if (match[8] !== 'Z') {
                 minutesOffset = +match[10] * 60 + (+match[11]);
@@ -394,7 +394,10 @@ THE SOFTWARE.
                 }
             }
 
-            timestamp = Cromag.UTC(+match[1], +match[2] - 1, +match[3], +match[4], +match[5] + minutesOffset, +match[6], +match[7].substr(0, 3));
+            ms = match[7] ? match[7] : "0"
+            ms = +ms.substr(0, 3)
+
+            timestamp = Cromag.UTC(+match[1], +match[2] - 1, +match[3], +match[4], +match[5] + minutesOffset, +match[6], ms);
         }
 
         return timestamp;
@@ -505,11 +508,11 @@ THE SOFTWARE.
         }
         return 0;
     };
-    
+
     Cromag.dayEquals = function (date1, date2) {
         day1 = new Cromag(date1).clearTime();
         day2 = new Cromag(date2).clearTime();
-        
+
         return Cromag.equals(day1, day2);
     }
 
@@ -738,7 +741,7 @@ THE SOFTWARE.
     polyfill('equals', function (date) {
         return Cromag.equals(this, date);
     });
-    
+
     polyfill('dayEquals', function (date) {
         return Cromag.dayEquals(this, date);
     });
